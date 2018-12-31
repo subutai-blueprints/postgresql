@@ -17,11 +17,12 @@
       apt:
         name: "{{ item }}"
         allow_unauthenticated: yes
-          - 'dirmngr'
-          - 'ca-certificates'
-          - 'sudo'
-          - 'locales'
         update_cache: true
+        with_items:
+          - dirmngr
+          - ca-certificates
+          - sudo
+          - locales
 
     - name: Setup locale properly
       locale_gen:
