@@ -25,7 +25,7 @@
 
     - name: Add postgres repository
       apt_repository:
-        repo: http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main
+        repo: deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main
         update_cache: true
         state: present
 
