@@ -55,8 +55,8 @@
         },
         "domainName": {
             "description": "Domain name",
-            "type": "string",
-            "default": "postgres.foobar.com",
+            "type": "domain",
+            "default": "postgres.envs.subut.ai",
             "validation": "[a-zA-Z0-9]+"
         },
         "adminUser": {
