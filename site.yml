@@ -1,5 +1,5 @@
 # Ansible Playbook for Subutai Postgresql Blueprint
----
+--- 
 
 - hosts: postgres
   remote_user: root
@@ -11,7 +11,7 @@
     - name: Upgrade debian
       apt:
         update_cache: true
-        upgrade: true
+#        upgrade: true
 
     - name: Install dirmngr
       apt:
@@ -20,17 +20,14 @@
 
     - name: Add postgres repository key
       apt_key:
-        keyserver: keys.gnupg.net
-        id: 7FCC7D46ACCC4CF8
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        state: present
 
     - name: Add postgres repository
       apt_repository:
         repo: http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main
-        state: present
-
-    - name: Update apt cache 
-      apt:
         update_cache: true
+        state: present
 
     - name: Install required debs
       apt:
