@@ -1,0 +1,85 @@
+{
+    "name": "${environmentName}",
+    "description": "Postgresql",
+    "version": "1.0.0",
+    "author": "https://github.com/akarasulu",
+    "containers": [
+        {
+            "hostname": "${dbContainerName}",
+            "template": "debian-stretch",
+            "peer-criteria": "DB-GROUP",
+            "size": "${containerSize}",
+            "port-mapping": [
+                {
+                    "protocol": "https",
+                    "domain": "${domainName}",
+                    "internal-port": "80",
+                    "external-port": "443"
+                }
+            ]
+        }
+    ],
+    "peer-criteria": [
+        {
+            "name": "DB-GROUP"
+        }
+    ],
+    "ansible-configuration": {
+        "source-url": "https://github.com/subutai-blueprints/postgresql/archive/master.zip",
+        "ansible-playbook": "site.yml",
+        "extra-vars": [
+            {
+                "key": "postgres_user",
+                "value": "${adminUser}"
+            }, 
+            {
+                "key": "postgres_pwd",
+                "value": "${adminPwd}"
+            }
+        ],
+        "groups": [
+            {
+                "name": "postgres",
+                "hostnames": [
+                    "${dbContainerName}"
+                ]
+            }
+        ]
+    },
+    "user-variables": {
+        "environmentName": {
+            "description": "Environment's name",
+            "type": "string",
+            "default": "postgres",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "domainName": {
+            "description": "Domain name",
+            "type": "string",
+            "default": "postgres.foobar.com",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "adminUser": {
+            "description": "Database administrator username",
+            "type": "string",
+            "default": "postgres"
+        },
+        "adminPwd": {
+            "description": "Database administrator password",
+            "type": "string",
+            "default": "secret"
+        },
+        "dbContainerName": {
+            "description": "Enter the container's hostname",
+            "type": "string",
+            "default": "postgres",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "containerSize": {
+            "description": "Container Size",
+            "type": "enum",
+            "default": "MEDIUM",
+            "validation": "MEDIUM,LARGE,HUGE"
+        }
+    }
+}

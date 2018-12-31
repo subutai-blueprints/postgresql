@@ -1,0 +1,55 @@
+# Ansible Playbook for Subutai Postgresql Blueprint
+---
+
+- hosts: postgres
+  remote_user: root
+  tasks:
+
+    - name: Disable dpkg fsync
+      raw: test -e /etc/dpkg/dpkg.cfg.d/unsafe-io || echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/unsafe-io
+
+    - name: Upgrade debian
+      apt:
+        update_cache: true
+        upgrade: true
+
+    - name: Install required debs
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items: 
+        - postgresql
+        - postgresql-client
+        - postgresql-contrib
+        - mcrypt
+        - apache2
+        - phpmyadmin
+
+    - name: Create database
+      postgresql_db:
+        name: extra
+        state: present
+        encoding: utf8
+
+    - name: Create database user
+      postgresql_user:
+        name: extra
+        password: extra
+        priv: "wordpress.*:ALL"
+
+    - name: Remove original index.html
+      file:
+        name: /var/www/html/index.html
+        state: absent
+
+    - name: Change ownership
+      file: 
+        path: /var/www/html
+        recurse: yes
+        owner: www-data
+        group: www-data
+
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted
