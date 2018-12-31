@@ -11,7 +11,7 @@
     - name: Upgrade debian
       apt:
         update_cache: true
-#        upgrade: true
+        upgrade: true
 
     - name: Install dirmngr
       apt:
@@ -46,9 +46,6 @@
         - python-setuptools
         - python-virtualenv
         - python-pip
-        - build-essential
-        - mcrypt
-        - apache2
         - pgadmin4
 
     - name: Install psycopg2 python package
@@ -59,3 +56,4 @@
       service:
         name: apache2
         state: restarted
+
