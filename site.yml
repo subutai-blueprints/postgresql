@@ -13,15 +13,15 @@
         update_cache: true
         upgrade: true
 
-    - name: Install dirmngr
+    - name: Install setup tools
       apt:
-        name: dirmngr
+        name: "{{ item }}"
         allow_unauthenticated: yes
-
-    - name: Install cacerts
-      apt:
-        name: ca-certificates
-        allow_unauthenticated: yes
+          - 'dirmngr'
+          - 'ca-certificates'
+          - 'sudo'
+          - 'locales'
+        update_cache: true
 
     - name: Setup locale properly
       locale_gen:
