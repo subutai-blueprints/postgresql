@@ -23,6 +23,11 @@
         name: ca-certificates
         allow_unauthenticated: yes
 
+    - name: Setup locale properly
+      locale_gen:
+        name: us_US.UTF-8
+        state: present
+
     - name: Add postgres repository key
       apt_key:
         url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
@@ -47,9 +52,40 @@
         - python-virtualenv
         - python-pip
         - pgadmin4
+        - apache2
+        - libgmp3-dev
+        - libpq-dev
+        - libapache2-mod-wsgi-py3
 
     - name: Install psycopg2 python package
       pip:
         name: psycopg2 
+
+    - name: Create pgadmin user
+      user:
+        name: pgadmin
+        password: secret
+        groups:
+          - postgres
+        state: present
+        system: no
+        createhome: yes
+        home: /var/lib/pgadmin
+
+    - name: Create pgadmin directories
+      file:
+        path: "{{item}}"
+        state: directory
+        mode: 0755
+        with_items:
+          - /var/lib/pgadmin/sessions
+          - /var/lib/pgadmin/storage
+          - /var/log/pgadmin
+        owner: pgadmin
+
+    - name: Restart apache
+        service: 
+          name: apache2
+          state: restarted
 
 
