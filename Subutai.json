@@ -2,6 +2,7 @@
     "name": "${environmentName}",
     "description": "Postgresql",
     "version": "1.0.0",
+    "ssh-key": "postgres",
     "author": "https://github.com/akarasulu",
     "containers": [
         {
