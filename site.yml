@@ -18,6 +18,11 @@
         name: dirmngr
         allow_unauthenticated: yes
 
+    - name: Install cacerts
+      apt:
+        name: ca-certificates
+        allow_unauthenticated: yes
+
     - name: Add postgres repository key
       apt_key:
         url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
