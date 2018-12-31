@@ -24,6 +24,11 @@
         - sudo
         - locales
 
+    - name: Delete /etc/locale.gen
+      file:
+        path: /etc/locale.gen
+        state: absent
+
     - name: Setup locale properly
       locale_gen:
         name: us_US.UTF-8
