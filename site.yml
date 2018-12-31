@@ -21,15 +21,18 @@
         - postgresql
         - postgresql-client
         - postgresql-contrib
+        - python-dev
+        - python-setuptools
+        - python-virtualenv
+        - python-pip
+        - build-essential
         - mcrypt
         - apache2
         - phpmyadmin
 
-    - name: Create database
-      postgresql_db:
-        name: extra
-        state: present
-        encoding: utf8
+    - name: Install psycopg2 python package
+      pip:
+        name: psycopg2 
 
     - name: Create database user
       postgresql_user:
