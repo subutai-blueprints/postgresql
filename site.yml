@@ -56,11 +56,11 @@
         - apache2
         - libgmp3-dev
         - libpq-dev
+        - python3-dev
+        - python3-setuptools
+        - python3-virtualenv
+        - python3-pip
         - libapache2-mod-wsgi-py3
-        - python-dev
-        - python-setuptools
-        - python-virtualenv
-        - python-pip
         - pgadmin4
 
     - name: Create pgadmin user
@@ -88,13 +88,14 @@
         - /var/log/pgadmin
 
     - name: Prepare python environment
-      command: virtualenv --system-site-packages --always-copy env 
+      command: virtualenvi -p python3 --system-site-packages --always-copy env 
       become: yes
       become_user: pgadmin
 
     - name: Install psycopg2 python package
       pip:
-        name: psycopg2 
+        name: psycopg2
+        executable: python3
 
     - name: Download pgadmin wheel file
       get_url:
