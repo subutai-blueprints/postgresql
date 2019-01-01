@@ -105,6 +105,22 @@
         name: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
         virtualenv: /var/lib/pgadmin/env
 
+    - name: Transfer local_config.py
+      copy: 
+        src: config_local.py
+        dest: /var/lib/pgadmin/env/lib/python2.7/site-packages/pgadmin4
+        owner: pgadmin
+        mode: 0644
+
+    - name: Expect respond to setup.py of pgadmin
+      expect:
+        command: python /var/lib/pgadmin/env/lib/python2.7/site-packages/pgadmin4/setup.py
+        responses:
+          Question:
+            - akarasulu@optdyn.com
+            - secret
+            - secret
+
     - name: Restart apache
       service: 
         name: apache2
