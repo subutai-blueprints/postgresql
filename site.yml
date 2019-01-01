@@ -88,7 +88,7 @@
         - /var/log/pgadmin
 
     - name: Prepare python environment
-      command: virtualenv -p /usr/bin/python3 --system-site-packages --always-copy env 
+      command: virtualenv -p /usr/bin/python3 --system-site-packages --always-copy /var/lib/pgadmin/env 
       become: yes
       become_user: pgadmin
 
