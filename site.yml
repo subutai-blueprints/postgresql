@@ -110,7 +110,7 @@
     - name: Transfer local_config.py
       copy: 
         src: config_local.py
-        dest: /var/lib/pgadmin/env/lib/python2.7/site-packages/pgadmin4
+        dest: /var/lib/pgadmin/env/lib/python3.5/site-packages/pgadmin4
         owner: pgadmin
         mode: 0644
 
