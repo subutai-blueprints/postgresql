@@ -88,14 +88,14 @@
         - /var/log/pgadmin
 
     - name: Prepare python environment
-      command: virtualenv -p /usr/bin/python3 --system-site-packages --always-copy /var/lib/pgadmin/env 
+      command: virtualenv -p /usr/bin/python3.5 --system-site-packages --always-copy /var/lib/pgadmin/env 
       become: yes
       become_user: pgadmin
 
     - name: Install psycopg2 python package
       pip:
         name: psycopg2
-        executable: /usr/bin/python3
+        executable: /usr/bin/python3.5
 
     - name: Download pgadmin wheel file
       get_url:
