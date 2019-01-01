@@ -112,6 +112,10 @@
         owner: pgadmin
         mode: 0644
 
+    - name: Install pexpect python package
+      pip:
+        name: pexpect
+
     - name: Expect respond to setup.py of pgadmin
       expect:
         command: python /var/lib/pgadmin/env/lib/python2.7/site-packages/pgadmin4/setup.py
