@@ -85,6 +85,15 @@
         - /var/lib/pgadmin/storage
         - /var/log/pgadmin
 
+    - name: Download pgadmin wheel file
+      get_url:
+        url: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.6/pip/pgadmin4-3.6-py2.py3-none-any.whl
+        dest: /root/pgadmin.whl
+
+    - name: Install pgadmin wheel package
+      pip:
+        name: /root/pgadmin.whl
+
     - name: Restart apache
       service: 
         name: apache2
