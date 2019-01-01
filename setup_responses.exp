@@ -1,0 +1,29 @@
+#!/usr/bin/expect -f
+
+set force_conservative 0  ;# set to 1 to force conservative mode even if
+			  ;# script wasn't run conservatively originally
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+
+set timeout -1
+spawn python /var/lib/pgadmin/env/lib/python2.7/site-packages/pgadmin4/setup.py
+match_max 100000
+expect -exact "NOTE: Configuring authentication for SERVER mode.\r
+\r
+Enter the email address and password to use for the initial pgAdmin user account:\r
+\r
+Email address: "
+send -- "akarasulu@optdyn.com\r"
+expect -exact "akarasulu@optdyn.com\r
+Password: "
+send -- "secret\r"
+expect -exact "\r
+Retype password:"
+send -- "secret\r"
+expect eof
