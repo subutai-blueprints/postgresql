@@ -94,9 +94,6 @@
     - name: Install psycopg2 python package
       pip:
         name: psycopg2 
-        virtualenv: /var/lib/pgadmin/env
-        become: True
-        become_user: pgadmin
 
     - name: Download pgadmin wheel file
       get_url:
@@ -109,8 +106,6 @@
       pip:
         name: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
         virtualenv: /var/lib/pgadmin/env
-        become: True
-        become_user: pgadmin
 
     - name: Restart apache
       service: 
