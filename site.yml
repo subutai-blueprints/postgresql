@@ -49,15 +49,18 @@
         - postgresql
         - postgresql-client
         - postgresql-contrib
-        - python-dev
-        - python-setuptools
-        - python-virtualenv
-        - python-pip
-        - pgadmin4
+        - build-essential
+        - libssl-dev
+        - libffi-dev
         - apache2
         - libgmp3-dev
         - libpq-dev
         - libapache2-mod-wsgi-py3
+        - python-dev
+        - python-setuptools
+        - python-venv
+        - python-pip
+        - pgadmin4
 
     - name: Install psycopg2 python package
       pip:
@@ -66,10 +69,12 @@
     - name: Create pgadmin user
       user:
         name: pgadmin
-        password: secret
+        password: secret # @TODO replace me with user provided info
         groups:
           - postgres
+          - www-data
         state: present
+        shell: /bin/bash
         system: no
         createhome: yes
         home: /var/lib/pgadmin
@@ -84,6 +89,11 @@
         - /var/lib/pgadmin/sessions
         - /var/lib/pgadmin/storage
         - /var/log/pgadmin
+
+    - name: Prepare python environment
+      command: python3 -m venv env
+      become: yes
+      become_user: pgadmin
 
     - name: Download pgadmin wheel file
       get_url:
