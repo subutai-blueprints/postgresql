@@ -79,11 +79,11 @@
         path: "{{item}}"
         state: directory
         mode: 0755
-        with_items:
-          - /var/lib/pgadmin/sessions
-          - /var/lib/pgadmin/storage
-          - /var/log/pgadmin
         owner: pgadmin
+      with_items:
+        - /var/lib/pgadmin/sessions
+        - /var/lib/pgadmin/storage
+        - /var/log/pgadmin
 
     - name: Restart apache
       service: 
