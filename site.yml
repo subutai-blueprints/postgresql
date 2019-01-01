@@ -120,6 +120,18 @@
         owner: pgadmin
         mode: 0755
 
+    - name: Transfer setup_responses.exp
+      copy:
+        src: setup_responses.exp
+        dest: /var/lib/pgadmin/setup_responses.exp
+        owner: pgadmin
+        mode: 0755
+
+    - name: Prepare python environment
+      command: ./setup_expect.sh 
+      become: yes
+      become_user: pgadmin
+
     - name: Restart apache
       service: 
         name: apache2
