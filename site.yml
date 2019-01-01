@@ -99,8 +99,6 @@
       get_url:
         url: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.6/pip/pgadmin4-3.6-py2.py3-none-any.whl
         dest: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
-        become: yes
-        become_user: pgadmin
 
     - name: Install pgadmin wheel package
       pip:
