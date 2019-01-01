@@ -24,15 +24,11 @@
         - sudo
         - locales
 
-    - name: Delete /etc/locale.gen
-      file:
-        path: /etc/locale.gen
-        state: absent
+    - name: Transfer locales_setup.sh
+      copy: src=locales_setup.sh dest=/root/locales_setup.sh
 
-    - name: Setup locale properly
-      locale_gen:
-        name: us_US.UTF-8
-        state: present
+    - name: Execute locales_setup.sh
+      command: bash /root/locales_setup.sh
 
     - name: Add postgres repository key
       apt_key:
