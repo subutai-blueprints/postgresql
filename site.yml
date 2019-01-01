@@ -95,7 +95,7 @@
     - name: Install psycopg2 python package
       pip:
         name: psycopg2
-        executable: /usr/bin/python3.5
+        executable: /usr/bin/pip3
 
     - name: Download pgadmin wheel file
       get_url:
