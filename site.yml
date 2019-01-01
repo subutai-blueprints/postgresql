@@ -62,10 +62,6 @@
         - python-pip
         - pgadmin4
 
-    - name: Install psycopg2 python package
-      pip:
-        name: psycopg2 
-
     - name: Create pgadmin user
       user:
         name: pgadmin
@@ -95,14 +91,26 @@
       become: yes
       become_user: pgadmin
 
+    - name: Install psycopg2 python package
+      pip:
+        name: psycopg2 
+        virtualenv: /var/lib/pgadmin/env
+        become: True
+        become_user: pgadmin
+
     - name: Download pgadmin wheel file
       get_url:
         url: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.6/pip/pgadmin4-3.6-py2.py3-none-any.whl
-        dest: /root/pgadmin4-3.6-py2.py3-none-any.whl
+        dest: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
+        become: yes
+        become_user: pgadmin
 
     - name: Install pgadmin wheel package
       pip:
-        name: /root/pgadmin4-3.6-py2.py3-none-any.whl
+        name: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
+        virtualenv: /var/lib/pgadmin/env
+        become: True
+        become_user: pgadmin
 
     - name: Restart apache
       service: 
