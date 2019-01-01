@@ -58,7 +58,7 @@
         - libapache2-mod-wsgi-py3
         - python-dev
         - python-setuptools
-        - python-venv
+        - python-virtualenv
         - python-pip
         - pgadmin4
 
