@@ -87,7 +87,7 @@
         - /var/log/pgadmin
 
     - name: Prepare python environment
-      command: python3 -m venv env
+      command: python -m venv env
       become: yes
       become_user: pgadmin
 
