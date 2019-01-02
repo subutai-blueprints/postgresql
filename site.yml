@@ -53,7 +53,7 @@
         state: present
 
     # -------------------------------------------------------------------------
-    # Big fat installation of all that we need
+    # Big ass install of all that might be needed
     # -------------------------------------------------------------------------
 
     - name: Install required debs
@@ -165,7 +165,7 @@
     # -------------------------------------------------------------------------
 
     # Might go away
-    
+
     - name: Restart apache
       service: 
         name: apache2
