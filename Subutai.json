@@ -14,7 +14,7 @@
                 {
                     "protocol": "https",
                     "domain": "${domainName}",
-                    "internal-port": "80",
+                    "internal-port": "5050",
                     "external-port": "443"
                 }
             ]
