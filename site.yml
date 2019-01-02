@@ -153,8 +153,19 @@
         owner: pgadmin
         mode: 0755
 
+    - name: Transfer service file
+      copy:
+        src: pgadmin.service
+        dest: /etc/systemd/system/pgadmin.service
+
     - name: Prepare python environment
       command: ./setup_expect.sh 
       become: yes
       become_user: pgadmin
 
+    - name: Setup and start pgadmin service
+      systemd: 
+        name: pgadmin
+        daemon_reload: yes
+        enabled: yes
+        state: started
