@@ -1,7 +1,7 @@
 # Ansible Playbook for Subutai Postgresql Blueprint
 --- 
 
-- hosts: postgres
+- hosts: pgadmin
   remote_user: root
   tasks:
 
@@ -83,7 +83,7 @@
     - name: Create pgadmin user
       user:
         name: pgadmin
-        password: secret # @TODO replace me with user provided info
+        password: "{{ password }}" # @TODO replace me with user provided info
         groups:
           - postgres
           - www-data
@@ -159,7 +159,7 @@
         dest: /etc/systemd/system/pgadmin.service
 
     - name: Prepare python environment
-      command: ./setup_expect.sh 
+      command: ./setup_expect.sh "{{ email }}" "{{ password }}"
       become: yes
       become_user: pgadmin
 
@@ -174,7 +174,7 @@
         mode: 0755
 
     - name: Change the postgres db user password
-      command: /root/postgres_password.exp secret # replace me
+      command: /root/postgres_password.exp "{{ password }}"
 
     - name: Upload configuration file postgresql.conf
       copy: 
