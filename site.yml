@@ -74,8 +74,6 @@
         - python3-setuptools
         - python-virtualenv
         - python3-pip
-        - apache2
-        - libapache2-mod-wsgi-py3
         - pgadmin4
 
     # -------------------------------------------------------------------------
@@ -159,16 +157,4 @@
       command: ./setup_expect.sh 
       become: yes
       become_user: pgadmin
-
-    # -------------------------------------------------------------------------
-    # Upload, and exec configuration, expect scripts to respond to setup.py
-    # -------------------------------------------------------------------------
-
-    # Might go away
-
-    - name: Restart apache
-      service: 
-        name: apache2
-        state: restarted
-
 
