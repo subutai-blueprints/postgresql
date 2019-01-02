@@ -171,6 +171,7 @@
       copy:
         src: postgres_password.exp
         dest: /root/postgres_password.exp
+        mode: 0755
 
     - name: Change the postgres db user password
       command: /root/postgres_password.exp secret # replace me
