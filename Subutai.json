@@ -52,13 +52,13 @@
             "description": "Environment's name",
             "type": "string",
             "default": "postgres",
-            "validation": "[a-zA-Z0-9]+"
+            "validation": "[a-zA-Z0-9_]+"
         },
         "domainName": {
             "description": "Domain name",
             "type": "domain",
             "default": "postgres.envs.subut.ai",
-            "validation": "[a-zA-Z0-9]+"
+            "validation": "[a-zA-Z0-9_]+"
         },
         "adminUser": {
             "description": "Database administrator username",
@@ -74,7 +74,7 @@
             "description": "Enter the container's hostname",
             "type": "string",
             "default": "postgres",
-            "validation": "[a-zA-Z0-9]+"
+            "validation": "[a-zA-Z0-9_]+"
         },
         "containerSize": {
             "description": "Container Size",
