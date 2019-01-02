@@ -1,12 +1,12 @@
 {
     "name": "${environmentName}",
-    "description": "Postgresql",
+    "description": "pgAdmin4 Administration Server for Postgresql",
     "version": "1.0.0",
     "ssh-key": "postgres",
     "author": "https://github.com/akarasulu",
     "containers": [
         {
-            "hostname": "${dbContainerName}",
+            "hostname": "pgadmin",
             "template": "debian-stretch",
             "peer-criteria": "DB-GROUP",
             "size": "${containerSize}",
@@ -27,22 +27,22 @@
     ],
     "ansible-configuration": {
         "source-url": "https://github.com/subutai-blueprints/postgresql/archive/master.zip",
-        "ansible-playbook": "site.yml",
+        "ansible-playbook": "main.yml",
         "extra-vars": [
             {
-                "key": "postgres_user",
-                "value": "${adminUser}"
-            }, 
+                "key": "email",
+                "value": "${email}"
+            },
             {
-                "key": "postgres_pwd",
-                "value": "${adminPwd}"
+                "key": "password",
+                "value": "${password}"
             }
         ],
         "groups": [
             {
-                "name": "postgres",
+                "name": "pgadmin",
                 "hostnames": [
-                    "${dbContainerName}"
+                    "pgadmin"
                 ]
             }
         ]
@@ -51,36 +51,30 @@
         "environmentName": {
             "description": "Environment's name",
             "type": "string",
-            "default": "postgres",
+            "default": "pgadmin",
             "validation": "[a-zA-Z0-9_]+"
         },
         "domainName": {
             "description": "Domain name",
             "type": "domain",
-            "default": "postgres.envs.subut.ai",
+            "default": "pgadmin.envs.subut.ai",
             "validation": "[a-zA-Z0-9_]+"
         },
-        "adminUser": {
-            "description": "Database administrator username",
+        "email": {
+            "description": "Email for pgadmin web UI login",
             "type": "string",
-            "default": "postgres"
+            "default": "alex@example.com"
         },
-        "adminPwd": {
-            "description": "Database administrator password",
+        "password": {
+            "description": "Common password: postgres, pgadmin, web ui user",
             "type": "string",
             "default": "secret"
-        },
-        "dbContainerName": {
-            "description": "Enter the container's hostname",
-            "type": "string",
-            "default": "postgres",
-            "validation": "[a-zA-Z0-9_]+"
         },
         "containerSize": {
             "description": "Container Size",
             "type": "enum",
             "default": "MEDIUM",
-            "validation": "MEDIUM,LARGE,HUGE"
+            "validation": "SMALL,MEDIUM,LARGE,HUGE"
         }
     }
 }
