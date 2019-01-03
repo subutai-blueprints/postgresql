@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "pgAdmin4 Administration Server for Postgresql",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "ssh-key": "postgres",
     "author": "https://github.com/akarasulu",
     "containers": [
