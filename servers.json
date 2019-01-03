@@ -1,11 +1,13 @@
 {
 	"Servers": {
-		"Name": "localhost",
-		"Group": "Servers",
-		"Port": 5432,
-		"Username": "postgres",
-		"Host": "localhost",
-		"SSLMode": "prefer",
-		"MaintenanceDB": "postgres"
+		"1": {
+			"Name": "localhost",
+			"Group": "Servers",
+			"Port": 5432,
+			"Username": "postgres",
+			"Host": "localhost",
+			"SSLMode": "prefer",
+			"MaintenanceDB": "postgres"
+		}
 	}
 }
