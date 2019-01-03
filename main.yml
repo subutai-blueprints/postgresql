@@ -204,8 +204,8 @@
 
     - name: Transfer server.json for import
       copy:
-        src: server.json
-        dest: /var/lib/pgadmin/server.json
+        src: servers.json
+        dest: /var/lib/pgadmin/servers.json
         mode: 0644
         owner: pgadmin
 
