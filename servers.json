@@ -2,7 +2,7 @@
 	"Servers": {
 		"1": {
 			"Name": "localhost",
-			"Group": "Servers",
+			"Group": "Inside Environment",
 			"Port": 5432,
 			"Username": "postgres",
 			"Host": "localhost",
