@@ -217,6 +217,6 @@
         owner: pgadmin
 
     - name: Import localhost server.json
-      command: /var/lib/pgadmin/setup_import.sh "{{ email }}"
+      command: /var/lib/pgadmin/setup_import.sh "{{ email }}" "/var/lib/pgadmin/servers.json"
       become: yes
       become_user: pgadmin
