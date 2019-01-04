@@ -13,7 +13,7 @@
             "port-mapping": [
                 {
                     "protocol": "https",
-                    "domain": "${domainName}",
+                    "domain": "${domain}",
                     "internal-port": "80",
                     "external-port": "443"
                 }
@@ -58,7 +58,7 @@
             "default": "pgadmin",
             "validation": "[a-zA-Z0-9_]+"
         },
-        "domainName": {
+        "domain": {
             "description": "Domain name",
             "type": "domain",
             "default": "pgadmin.envs.subut.ai",
