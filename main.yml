@@ -252,13 +252,6 @@
 
     - name: Add new vhost in nginx-pgadmin.conf
       copy:
-      src: nginx-pgadmin.conf
-      dest: /etc/nginx/sites-available/pgadmin.conf
-      mode: 0644
-      owner: root
-
-    - name: Add new vhost in pgadmin.conf for the domain name
-      copy:
         src: nginx-pgadmin.conf
         dest: /etc/nginx/sites-available/pgadmin
         mode: 0644
