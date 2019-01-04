@@ -3,12 +3,12 @@ Description=pgAdmin4
 After=network.target
 User=pgadmin
 Group=pgadmin
-RootDirectory=/var/lib/pgadmin/env
+RootDirectory=/var/lib/pgadmin
 
 [Service]
 Type=simple
 Restart=always
-ExecStart=/var/lib/pgadmin/env/bin/python3.5 /var/lib/pgadmin/env/lib/python3.5/site-packages/pgadmin4/pgAdmin4.py  --serve-in-foreground
+ExecStart=/usr/bin/uwsgi /var/lib/pgadmin/pgadmin4.ini
 
 [Install]
 WantedBy=multi-user.target

@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "pgAdmin4 Administration Server for Postgresql",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "ssh-key": "postgres",
     "author": "https://github.com/akarasulu",
     "containers": [
@@ -14,7 +14,7 @@
                 {
                     "protocol": "https",
                     "domain": "${domainName}",
-                    "internal-port": "5050",
+                    "internal-port": "80",
                     "external-port": "443"
                 }
             ]
@@ -29,6 +29,10 @@
         "source-url": "https://github.com/subutai-blueprints/subutai-pgadmin-blueprint/archive/master.zip",
         "ansible-playbook": "main.yml",
         "extra-vars": [
+            {
+                "key": "domain",
+                "value": "${domain}"
+            },
             {
                 "key": "email",
                 "value": "${email}"
