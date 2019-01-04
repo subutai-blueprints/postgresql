@@ -86,7 +86,7 @@
     - name: Create pgadmin user
       user:
         name: pgadmin
-        password: "{{ password }}" # @TODO replace me with user provided info
+        password: "{{ password }}"
         groups:
           - postgres
           - www-data
