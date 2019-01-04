@@ -160,6 +160,13 @@
         owner: pgadmin
         mode: 0755
 
+    - name: Transfer pgadmin4.ini
+      copy:
+        src: pgadmin4.ini
+        dest: /var/lib/pgadmin/pgadmin4.ini
+        owner: pgadmin
+        mode: 0644
+
     - name: Transfer service file
       copy:
         src: pgadmin.service
