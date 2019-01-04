@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "pgAdmin4 Administration Server for Postgresql",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "ssh-key": "postgres",
     "author": "https://github.com/akarasulu",
     "containers": [
@@ -13,8 +13,8 @@
             "port-mapping": [
                 {
                     "protocol": "https",
-                    "domain": "${domainName}",
-                    "internal-port": "5050",
+                    "domain": "${domain}",
+                    "internal-port": "80",
                     "external-port": "443"
                 }
             ]
@@ -26,9 +26,13 @@
         }
     ],
     "ansible-configuration": {
-        "source-url": "https://github.com/subutai-blueprints/subutai-pgadmin-blueprint/archive/master.zip",
+        "source-url": "https://github.com/akarasulu/subutai-pgadmin-blueprint/archive/master.zip",
         "ansible-playbook": "main.yml",
         "extra-vars": [
+            {
+                "key": "domain",
+                "value": "${domain}"
+            },
             {
                 "key": "email",
                 "value": "${email}"
@@ -54,7 +58,7 @@
             "default": "pgadmin",
             "validation": "[a-zA-Z0-9_]+"
         },
-        "domainName": {
+        "domain": {
             "description": "Domain name",
             "type": "domain",
             "default": "pgadmin.envs.subut.ai",
