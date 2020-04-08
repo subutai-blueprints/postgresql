@@ -23,7 +23,7 @@ Enter the email address and password to use for the initial pgAdmin user account
 \r
 Email address: "
 send -- "$email\r"
-expect -exact "akarasulu@optdyn.com\r
+expect -exact "\r
 Password: "
 send -- "$password\r"
 expect -exact "\r
