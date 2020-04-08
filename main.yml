@@ -127,13 +127,15 @@
 
     - name: Download pgadmin wheel file
       get_url:
-        url: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.6/pip/pgadmin4-3.6-py2.py3-none-any.whl
-        dest: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
+        url: https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v4.20/pip/pgadmin4-4.20-py2.py3-none-any.whl
+        dest: /var/lib/pgadmin/pgadmin4-4.20-py2.py3-none-any.whl
 
     - name: Install pgadmin wheel package
       pip:
-        name: /var/lib/pgadmin/pgadmin4-3.6-py2.py3-none-any.whl
+        name: name: /var/lib/pgadmin/pgadmin4-4.20-py2.py3-none-any.whl
         virtualenv: /var/lib/pgadmin/env
+        virtualenv_python: python3.5
+        extra_args: --upgrade --no-cache-dir --no-use-pep517
 
     # -------------------------------------------------------------------------
     # Upload, and exec configuration, expect scripts to respond to setup.py
@@ -193,12 +195,12 @@
     - name: Upload configuration file postgresql.conf
       copy: 
         src: postgresql.conf
-        dest: /etc/postgresql/11/main/postgresql.conf
+        dest: /etc/postgresql/12/main/postgresql.conf
 
     - name: Upload configuration file pg_hba.conf
       copy: 
         src: pg_hba.conf
-        dest: /etc/postgresql/11/main/pg_hba.conf
+        dest: /etc/postgresql/12/main/pg_hba.conf
 
     - name: Restart database
       systemd:
