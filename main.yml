@@ -132,7 +132,7 @@
 
     - name: Install pgadmin wheel package
       pip:
-        name: name: /var/lib/pgadmin/pgadmin4-4.20-py2.py3-none-any.whl
+        name: /var/lib/pgadmin/pgadmin4-4.20-py2.py3-none-any.whl
         virtualenv: /var/lib/pgadmin/env
         virtualenv_python: python3.5
         extra_args: --upgrade --no-cache-dir --no-use-pep517
