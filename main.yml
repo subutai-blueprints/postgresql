@@ -62,9 +62,9 @@
         state: present
       with_items: 
         - expect
-        - postgresql
-        - postgresql-client
-        - postgresql-contrib
+        - postgresql-11
+        - postgresql-client-11
+        - postgresql-contrib-11
         - build-essential
         - libssl-dev
         - libffi-dev
@@ -195,12 +195,12 @@
     - name: Upload configuration file postgresql.conf
       copy: 
         src: postgresql.conf
-        dest: /etc/postgresql/12/main/postgresql.conf
+        dest: /etc/postgresql/11/main/postgresql.conf
 
     - name: Upload configuration file pg_hba.conf
       copy: 
         src: pg_hba.conf
-        dest: /etc/postgresql/12/main/pg_hba.conf
+        dest: /etc/postgresql/11/main/pg_hba.conf
 
     - name: Restart database
       systemd:
